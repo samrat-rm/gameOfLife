@@ -1,3 +1,5 @@
+const { Grid } = require("./grid");
+
 class GameOfLife {
     #grid;
 
