@@ -1,4 +1,5 @@
 const { Grid } = require("./grid");
+const { Game } = require("./game");
 
 describe("Grid", () => {
     let grid;
@@ -92,3 +93,47 @@ describe("Grid", () => {
         expect(newGrid[1][1]).toBe(true);
     });
 });
+
+// function updateGridForTesting(grid) {
+//     const rows = grid.length;
+//     const columns = grid[0].length;
+//     const newGrid = new Array(rows);
+//     for (let row = 0; row < rows; row++) {
+//         newGrid[row] = new Array(columns).fill(false);
+//     }
+//     // Update each cell based on its neighbors
+//     for (let row = 0; row < rows; row++) {
+//         for (let col = 0; col < columns; col++) {
+//             const neighbors = countNeighbors(row, col, grid);
+//             if (grid[row][col]) {
+//                 if (neighbors === 2 || neighbors === 3) {
+//                     newGrid[row][col] = true;
+//                 }
+//             } else {
+//                 if (neighbors === 3) {
+//                     newGrid[row][col] = true;
+//                 }
+//             }
+//         }
+//     }
+//     return newGrid;
+// }
+
+// function countNeighbors(row, col, grid) {
+//     const rows = grid.length;
+//     const columns = grid[0].length;
+//     let count = 0;
+//     // 9 times
+//     for (let r = row - 1; r <= row + 1; r++) {
+//         for (let c = col - 1; c <= col + 1; c++) {
+//             if (r >= 0 && r < rows && c >= 0 && c < columns && grid[r][c]) {
+//                 count++;
+//             }
+//         }
+//     }
+//     // -1 because we inclued the central grid.
+//     if (grid[row][col]) {
+//         count--;
+//     }
+//     return count;
+// }
