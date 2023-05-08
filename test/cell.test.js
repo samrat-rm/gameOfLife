@@ -1,5 +1,6 @@
 const Cell = require("../utils/cell");
 const Address = require("../utils/address");
+const GridOperations = require("../utils/gridOperations");
 
 describe("Cell", () => {
     describe("constructor", () => {
@@ -21,32 +22,23 @@ describe("Cell", () => {
 
     describe("updateState", () => {
         it("should update the state of the cell based on the number of alive neighbors", () => {
-            const address1 = new Address(0, 0);
-            const cell1 = new Cell(address1, true);
-            const address2 = new Address(0, 1);
-            const cell2 = new Cell(address2, true);
-            const address3 = new Address(0, 2);
-            const cell3 = new Cell(address3, false);
-            const address4 = new Address(1, 0);
-            const cell4 = new Cell(address4, true);
-            const address5 = new Address(1, 1);
-            const cell5 = new Cell(address5, false);
-            const address6 = new Address(1, 2);
-            const cell6 = new Cell(address6, false);
-            const address7 = new Address(2, 0);
-            const cell7 = new Cell(address7, false);
-            const address8 = new Address(2, 1);
-            const cell8 = new Cell(address8, false);
-            const address9 = new Address(2, 2);
-            const cell9 = new Cell(address9, false);
-            const grid = [
-                [cell1, cell2, cell3],
-                [cell4, cell5, cell6],
-                [cell7, cell8, cell9],
+            const gridOperations = new GridOperations(3, 3);
+            const customState = [
+                false,
+                false,
+                false,
+                true,
+                true,
+                true,
+                false,
+                true,
+                true,
             ];
-            const neighbors = [cell1, cell2, cell4, cell5, cell6];
-            cell5.updateState(neighbors);
-            expect(cell5.getState()).toBe(true);
+            gridOperations.grid = customGrid(customState);
+            const cell = gridOperations.getCell(1, 1);
+            const neighbours = gridOperations.getNeighbors(cell);
+            const recievedState = cell.updateState(neighbours);
+            expect(recievedState).toBe(false);
         });
     });
 
@@ -58,3 +50,19 @@ describe("Cell", () => {
         });
     });
 });
+
+function customGrid(stateArr) {
+    let ind = 0;
+    let gridArr = [];
+    for (let row = 0; row < 3; row++) {
+        let gridRow = [];
+        for (let col = 0; col < 3; col++) {
+            let address = new Address(row, col);
+            let cell = new Cell(address, stateArr[ind]);
+            gridRow.push(cell);
+            ind++;
+        }
+        gridArr.push(gridRow);
+    }
+    return gridArr;
+}

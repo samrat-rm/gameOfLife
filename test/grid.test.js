@@ -77,33 +77,22 @@ describe("Grid", () => {
                     new Cell(new Address(2, 2), true),
                 ],
             ];
+            const expectedNeighbors = [
+                new Cell(new Address(0, 0), true),
+                new Cell(new Address(0, 1), false),
+                new Cell(new Address(0, 2), true),
 
+                new Cell(new Address(1, 0), true),
+                new Cell(new Address(1, 1), false),
+
+                new Cell(new Address(2, 0), false),
+                new Cell(new Address(2, 1), true),
+                new Cell(new Address(2, 2), true),
+            ];
             const address = new Address(1, 1);
             const neighbors = grid.getNeighbors(address);
-
-            const expectedNeighbors = [
-                [
-                    new Cell(new Address(0, 0), true),
-                    new Cell(new Address(0, 1), false),
-                    new Cell(new Address(0, 2), true),
-                ],
-                [
-                    new Cell(new Address(1, 0), true),
-                    new Cell(new Address(1, 2), false),
-                ],
-                [
-                    new Cell(new Address(2, 0), false),
-                    new Cell(new Address(2, 1), true),
-                    new Cell(new Address(2, 2), true),
-                ],
-            ];
-
-            for (let row = 0; row < expectedNeighbors.length; row++) {
-                for (let col = 0; col < expectedNeighbors[row].length; col++) {
-                    expect(
-                        neighbors.includes(expectedNeighbors[row][col])
-                    ).toBe(true);
-                }
+            for (let ind = 0; ind < expectedNeighbors.length; ind++) {
+                expect(neighbors[ind].state).toBe(expectedNeighbors[ind].state);
             }
         });
     });

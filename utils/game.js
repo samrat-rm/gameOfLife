@@ -30,6 +30,7 @@ class GameOfLife {
     tick() {
         this.#grid.updateGrid();
         this.#printCurrentGrid(this.#grid);
+        return this.#grid;
     }
 }
 
