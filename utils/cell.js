@@ -4,10 +4,11 @@ class Cell {
         this.row = row;
         this.col = col;
     }
-    updatePosition(grid) {
+
+    #countNeighbour(grid) {
+        let count = 0;
         const rows = grid.length;
         const columns = grid[0].length;
-        let count = 0;
         // 9 times
         for (let r = this.row - 1; r <= this.row + 1; r++) {
             for (let c = this.col - 1; c <= this.col + 1; c++) {
@@ -22,6 +23,11 @@ class Cell {
         if (grid[this.row][this.col].state) {
             count--;
         }
+        return count;
+    }
+
+    updateState(grid) {
+        const count = this.#countNeighbour(grid);
         // console.log(this.row, this.col, grid[this.row][this.col].state, count);
         if (grid[this.row][this.col].state) {
             if (count === 2 || count === 3) {

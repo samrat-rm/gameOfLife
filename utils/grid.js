@@ -48,7 +48,7 @@ class Grid {
         for (let row = 0; row < rows; row++) {
             for (let col = 0; col < columns; col++) {
                 const cell = this.grid[row][col];
-                let state = cell.updatePosition(this.grid);
+                let state = cell.updateState(this.grid);
                 newGrid[row][col] = new Cell(row, col, state);
             }
         }

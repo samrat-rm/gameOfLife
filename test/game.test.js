@@ -61,6 +61,7 @@ describe("GameOfLife", () => {
         }
     });
 });
+
 function customGrid(stateArr) {
     let ind = 0;
     let gridArr = [];
