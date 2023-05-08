@@ -34,7 +34,7 @@ describe("GameOfLife", () => {
         ];
         gridData.grid = customGrid(stateArr);
         const game = new GameOfLife(gridData);
-        game.tick();
+        game.tick(); // return the grid
         const newGridData = gridData.grid;
 
         const expectedArr = [
@@ -62,6 +62,7 @@ describe("GameOfLife", () => {
     });
 });
 
+// replace i j
 function customGrid(stateArr) {
     let ind = 0;
     let gridArr = [];

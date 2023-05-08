@@ -12,10 +12,14 @@ class Cell {
         // 9 times
         for (let r = this.row - 1; r <= this.row + 1; r++) {
             for (let c = this.col - 1; c <= this.col + 1; c++) {
-                if (r >= 0 && c >= 0 && r < rows && c < columns) {
-                    if (grid[r][c].state) {
-                        count++;
-                    }
+                if (
+                    r >= 0 &&
+                    c >= 0 &&
+                    r < rows &&
+                    c < columns &&
+                    grid[r][c].state
+                ) {
+                    count++;
                 }
             }
         }
