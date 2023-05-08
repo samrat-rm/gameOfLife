@@ -8,10 +8,10 @@ class GameOfLife {
             throw new Error("Invalid grid ");
         }
         this.#grid = grid;
-        this.printCurrentGrid(this.#grid);
+        this.#printCurrentGrid(this.#grid);
     }
 
-    printCurrentGrid(grid) {
+    #printCurrentGrid(grid) {
         console.log("\n");
         const rows = grid.rows;
         const columns = grid.columns;
@@ -29,7 +29,7 @@ class GameOfLife {
 
     tick() {
         this.#grid.updateGrid();
-        this.printCurrentGrid(this.#grid);
+        this.#printCurrentGrid(this.#grid);
     }
 }
 

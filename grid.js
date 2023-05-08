@@ -1,5 +1,5 @@
 class Grid {
-    #grid;
+    grid;
 
     constructor(rows, columns) {
         if (typeof rows !== "number" || rows <= 0 || columns <= 0) {
@@ -7,7 +7,7 @@ class Grid {
         }
         this.rows = rows;
         this.columns = columns;
-        this.#grid = this.#createGrid(rows, columns);
+        this.grid = this.#createGrid(rows, columns);
     }
 
     #populate(rows, columns) {
@@ -77,20 +77,16 @@ class Grid {
             }
         }
 
-        this.#grid = newGrid;
+        this.grid = newGrid;
         return newGrid;
     }
 
     cell(row, col) {
-        if (this.#grid[row] && this.#grid[row][col]) {
-            return this.#grid[row][col];
+        if (this.grid[row] && this.grid[row][col]) {
+            return this.grid[row][col];
         } else {
             return false;
         }
-    }
-
-    setGrid(grid) {
-        this.#grid = grid;
     }
 }
 
