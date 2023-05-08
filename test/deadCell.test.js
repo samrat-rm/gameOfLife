@@ -23,15 +23,21 @@ describe("DeadCell", () => {
             new AliveCell(address2),
             new AliveCell(address3),
         ];
-        const nextCell = cell.updateState(neighbors);
-        expect(nextCell instanceof AliveCell).toEqual(true);
-        expect(nextCell.address).toEqual(address);
+        const state = cell.updateState(neighbors);
+        const nextCell = state
+            ? new AliveCell(cell.address)
+            : new DeadCell(cell.address);
+        expect(nextCell instanceof AliveCell).toBe(true);
+        expect(nextCell.address).toBe(address);
     });
 
     it("should return itself if it has any number of live neighbors other than 3", () => {
         const cell = new DeadCell(address);
         const neighbors = [new AliveCell(address1), new AliveCell(address2)];
-        const nextCell = cell.updateState(neighbors);
+        const state = cell.updateState(neighbors);
+        const nextCell = state
+            ? new AliveCell(cell.address)
+            : new DeadCell(cell.address);
         expect(nextCell instanceof DeadCell).toEqual(true);
         expect(nextCell.address).toEqual(address);
     });
