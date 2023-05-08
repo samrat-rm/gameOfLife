@@ -4,7 +4,7 @@ class GameOfLife {
     #grid;
 
     constructor(grid) {
-        if (!grid || !grid instanceof Grid) {
+        if (!grid || !(grid instanceof Grid)) {
             throw new Error("Invalid grid ");
         }
         this.#grid = grid;
