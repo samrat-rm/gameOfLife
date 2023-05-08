@@ -1,7 +1,8 @@
-class DeadCell {
+const Cell = require("./cell");
+
+class DeadCell extends Cell {
     constructor(address) {
-        this.address = address;
-        this.state = false;
+        super(address, false);
     }
 
     updateState(neighbors) {
