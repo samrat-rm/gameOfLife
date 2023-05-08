@@ -5,23 +5,41 @@ const DeadCell = require("./utils/deadCell");
 const Address = require("./utils/address");
 const Cell = require("./utils/cell");
 
-// const grid = new GridOperations(3, 3);
+const grid = new GridOperations(3, 3);
 // // const address = new Address(1, 1);
 // const game = new GameOfLife(grid);
 // game.tick();
-let address = new Address(0, 0);
-let address1 = new Address(0, 1);
-let address2 = new Address(0, 2);
-let address3 = new Address(1, 0);
-const cell = new DeadCell(address);
-const neighbors = [
-    new AliveCell(address1),
-    new AliveCell(address2),
-    new AliveCell(address3),
+
+const testCellState = [
+    DeadCell,
+    AliveCell,
+    DeadCell,
+
+    DeadCell,
+    AliveCell,
+    DeadCell,
+
+    DeadCell,
+    AliveCell,
+    DeadCell,
 ];
-const state = cell.updateState(neighbors);
-const nextCell = state
-    ? new AliveCell(cell.address)
-    : new DeadCell(cell.address);
-console.log(nextCell instanceof AliveCell, true);
-console.log(nextCell.address, address);
+
+grid.grid = customGrid(testCellState, 3, 3);
+
+function customGrid(cellState, rows, cols) {
+    let ind = 0;
+    let customGrid = [];
+    for (let row = 0; row < rows; row++) {
+        let gridRow = [];
+        for (let col = 0; col < cols; col++) {
+            let cellClass = cellState[ind];
+            let address = new Address(row, col);
+            gridRow.push(new cellClass(address));
+            ind++;
+        }
+        customGrid.push(gridRow);
+    }
+    return customGrid;
+}
+
+console.log(grid.updateGrid());
