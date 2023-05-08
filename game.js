@@ -19,7 +19,7 @@ class GameOfLife {
         // printing  a output string
         for (let row = 0; row < rows; row++) {
             for (let col = 0; col < columns; col++) {
-                output += grid.cell(row, col) ? " O " : " - ";
+                output += grid.cell(row, col).state ? " O " : " - ";
             }
             output += "\n";
         }

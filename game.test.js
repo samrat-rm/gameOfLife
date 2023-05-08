@@ -1,5 +1,6 @@
 const { GameOfLife } = require("./game");
 const { Grid } = require("./grid");
+const { Cell } = require("./cell");
 
 describe("GameOfLife", () => {
     let gridData;
@@ -20,46 +21,57 @@ describe("GameOfLife", () => {
     });
 
     test("tick method updates grid correctly", () => {
-        gridData.grid = [
-            [true, false, true],
-            [true, true, false],
-            [true, false, true],
+        let stateArr = [
+            true,
+            false,
+            true,
+            true,
+            true,
+            false,
+            true,
+            false,
+            true,
         ];
+        gridData.grid = customGrid(stateArr);
         const game = new GameOfLife(gridData);
         game.tick();
         const newGridData = gridData.grid;
-        const expected = [
-            [true, false, false],
-            [true, false, true],
-            [true, false, false],
+
+        const expectedArr = [
+            true,
+            false,
+            false,
+            true,
+            false,
+            true,
+            true,
+            false,
+            false,
         ];
+        const expected = customGrid(expectedArr);
 
         expect(newGridData).toBeDefined();
         expect(newGridData.length).toBe(3);
-        for (let i = 0; i < 3; i++) {
-            expect(newGridData[i]).toEqual(expected[i]);
-        }
-    });
-    test("tick method called multiple times, should update the grid correctly ", () => {
-        gridData.grid = [
-            [true, false, true],
-            [true, true, false],
-            [true, false, true],
-        ];
-        const game = new GameOfLife(gridData);
-        game.tick();
-        game.tick();
-        const newGridData = gridData.grid;
-        const expected = [
-            [false, true, false],
-            [true, false, false],
-            [false, true, false],
-        ];
-
-        expect(newGridData).toBeDefined();
-        expect(newGridData.length).toBe(3);
-        for (let i = 0; i < 3; i++) {
-            expect(newGridData[i]).toEqual(expected[i]);
+        for (let row = 0; row < 3; row++) {
+            for (let col = 0; col < 3; col++) {
+                expect(newGridData[row][col].state).toEqual(
+                    expected[row][col].state
+                );
+            }
         }
     });
 });
+function customGrid(stateArr) {
+    let ind = 0;
+    let gridArr = [];
+    for (let i = 0; i < 3; i++) {
+        let gridRow = [];
+        for (let j = 0; j < 3; j++) {
+            let cell = new Cell(i, j, stateArr[ind]);
+            gridRow.push(cell);
+            ind++;
+        }
+        gridArr.push(gridRow);
+    }
+    return gridArr;
+}

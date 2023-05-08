@@ -1,8 +1,7 @@
 const { Grid } = require("./grid");
 const { GameOfLife } = require("./game");
+const { Cell } = require("./cell");
 
-const grid = new Grid(3, 5);
-const game = new GameOfLife(grid);
-game.tick();
-game.tick();
+const gridData = new Grid(3, 3);
+const game = new GameOfLife(gridData);
 game.tick();
