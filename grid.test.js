@@ -2,25 +2,19 @@ const { Grid } = require("./grid");
 const { Game } = require("./game");
 
 describe("Grid", () => {
-    let grid;
+    let gridData;
 
     beforeEach(() => {
-        grid = new Grid(3, 3);
+        gridData = new Grid(3, 3);
     });
 
     test("constructor initializes grid with random cells", () => {
         // step
-        expect(grid).toBeDefined();
-        expect(grid.rows).toBe(3);
-        expect(grid.columns).toBe(3);
-        expect(grid.cell(0, 0)).toBeDefined();
-    });
-
-    test("cell method returns false for invalid input", () => {
-        // Check if the cell method returns false for invalid input
-        expect(grid.cell(-1, 0)).toBe(false);
-        expect(grid.cell(3, 2)).toBe(false);
-        expect(grid.cell(2, 3)).toBe(false);
+        expect(gridData).toBeDefined();
+        expect(gridData.rows).toBe(3);
+        expect(gridData.columns).toBe(3);
+        expect(gridData.cell(0, 0)).toBeDefined();
+        expect(gridData.cell(1, 2)).toBeDefined();
     });
 
     test("constructor throws error for invalid input", () => {
@@ -37,16 +31,34 @@ describe("Grid", () => {
         );
     });
 
+    test("cell method returns false for invalid input", () => {
+        // Check if the cell method returns false for invalid input
+        expect(gridData.cell(-1, 0)).toBe(false);
+        expect(gridData.cell(3, 2)).toBe(false);
+        expect(gridData.cell(2, 3)).toBe(false);
+    });
+
+    test("Check if the cell method returns defined value", () => {
+        // Check if the cell method returns false for invalid input
+        gridData.grid = [
+            [true, false, true],
+            [true, true, false],
+            [true, false, true],
+        ];
+        expect(gridData.cell(1, 0)).toBe(true);
+        expect(gridData.cell(0, 2)).toBe(true);
+    });
+
     test("updateGrid method updates grid correctly", () => {
         // Set some cells manually
-        grid.grid = [
+        gridData.grid = [
             [true, false, true],
             [false, true, false],
             [true, true, false],
         ];
 
         // Call the updateGrid method and check if the grid is updated correctly
-        const newGrid = grid.updateGrid();
+        const newGrid = gridData.updateGrid();
 
         expect(newGrid).toBeDefined();
         expect(newGrid.length).toBe(3);
