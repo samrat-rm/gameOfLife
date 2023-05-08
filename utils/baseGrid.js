@@ -28,7 +28,7 @@ class BaseGrid {
         }
     }
 
-    createCell(address) {
+    createCell() {
         throw new Error("Not implemented");
     }
 }

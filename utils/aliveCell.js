@@ -1,5 +1,3 @@
-const DeadCell = require("./deadCell");
-
 class AliveCell {
     constructor(address) {
         this.address = address;
@@ -10,9 +8,9 @@ class AliveCell {
         const aliveNeighbors = neighbors.filter((cell) => cell.state).length;
 
         if (aliveNeighbors < 2 || aliveNeighbors > 3) {
-            return new DeadCell(this.address);
+            return false;
         }
-        return this;
+        return this.state;
     }
 }
 

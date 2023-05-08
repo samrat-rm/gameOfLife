@@ -1,9 +1,15 @@
-const Cell = require("./aliveCell");
+const DeadCell = require("./deadCell");
+const AliveCell = require("./aliveCell");
 const BaseGrid = require("./baseGrid");
 
 class GridOperations extends BaseGrid {
     createCell(address) {
-        return new Cell(address, Math.random() < 0.5 ? true : false);
+        let state = Math.random() < 0.5 ? true : false;
+        if (state) {
+            return new AliveCell(address);
+        } else {
+            return new DeadCell(address);
+        }
     }
 
     updateGrid() {
@@ -12,10 +18,13 @@ class GridOperations extends BaseGrid {
             const newRow = [];
             for (let col = 0; col < this.cols; col++) {
                 const cell = this.getCell(row, col);
-                const address = cell.getAddress();
+                const address = cell.address;
                 const neighbors = this.getNeighbors(address);
                 const state = cell.updateState(neighbors);
-                newRow.push(new Cell(address, state));
+                const updatedCell = state
+                    ? new AliveCell(cell.address)
+                    : new DeadCell(cell.address);
+                newRow.push(updatedCell);
             }
             newGrid.push(newRow);
         }
