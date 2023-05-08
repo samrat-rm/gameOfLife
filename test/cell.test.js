@@ -1,4 +1,4 @@
-const { Cell } = require("./cell");
+const { Cell } = require("../cell");
 
 describe("Cell", () => {
     test("should create a new Cell instance ", () => {

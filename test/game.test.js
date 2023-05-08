@@ -1,6 +1,6 @@
-const { GameOfLife } = require("./game");
-const { Grid } = require("./grid");
-const { Cell } = require("./cell");
+const { GameOfLife } = require("../game");
+const { Grid } = require("../grid");
+const { Cell } = require("../cell");
 
 describe("GameOfLife", () => {
     let gridData;

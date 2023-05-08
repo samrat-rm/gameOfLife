@@ -1,6 +1,6 @@
-const { Grid } = require("./grid");
-const { Game } = require("./game");
-const { Cell } = require("./cell");
+const { Grid } = require("../grid");
+const { Game } = require("../game");
+const { Cell } = require("../cell");
 
 describe("Grid", () => {
     let gridData;
