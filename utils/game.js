@@ -1,4 +1,4 @@
-const { Grid } = require("./grid");
+const Grid = require("./gridOperations");
 
 class GameOfLife {
     #grid;
@@ -14,12 +14,12 @@ class GameOfLife {
     #printCurrentGrid(grid) {
         console.log("\n");
         const rows = grid.rows;
-        const columns = grid.columns;
+        const columns = grid.cols;
         let output = "";
         // printing  a output string
         for (let row = 0; row < rows; row++) {
             for (let col = 0; col < columns; col++) {
-                output += grid.cell(row, col).state ? " O " : " - ";
+                output += grid.getCell(row, col).state ? " O " : " - ";
             }
             output += "\n";
         }

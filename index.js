@@ -1,9 +1,7 @@
-const { Grid } = require("./utils/grid");
+const GridOperations = require("./utils/gridOperations");
 const { GameOfLife } = require("./utils/game");
-const { Cell } = require("./utils/cell");
 
-const gridData = new Grid(3, 3);
-const game = new GameOfLife(gridData);
-game.tick();
+const grid = new GridOperations(3, 3);
+const game = new GameOfLife(grid);
 game.tick();
 game.tick();
