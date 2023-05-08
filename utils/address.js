@@ -3,14 +3,6 @@ class Address {
         this.row = row;
         this.col = col;
     }
-
-    getRow() {
-        return this.row;
-    }
-
-    getCol() {
-        return this.col;
-    }
 }
 
 module.exports = Address;

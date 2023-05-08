@@ -1,4 +1,4 @@
-const Cell = require("./cell");
+const Cell = require("./aliveCell");
 const BaseGrid = require("./baseGrid");
 
 class GridOperations extends BaseGrid {
